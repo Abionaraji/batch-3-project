@@ -37,9 +37,11 @@ pipeline{
                 }
             }
         }
-        stage('Quality Gate'){
+        stage('Sonar Gate'){
             steps{
-                waitForQualityGate abortPipeline: false, credentialsId: 'batch-3'
+                timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
         }
     }

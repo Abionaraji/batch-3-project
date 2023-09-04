@@ -29,6 +29,14 @@ WantedBy=multi-user.target
 
 EOT
 
+sudo apt-get update -y
+sudo apt-get install openjdk-11-jdk -y
+sudo update-alternatives --config java
+
+java -version
+
+sudo apt update
+
 echo 'run_as_user="nexus"' > /opt/nexus/$NEXUSDIR/bin/nexus.rc
 systemctl daemon-reload
 systemctl start nexus

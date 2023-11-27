@@ -43,10 +43,5 @@ pipeline{
                 }
             }
         }
-        stage('Uploading War'){
-            steps{
-                nexusArtifactUploader artifacts: [[artifactId: 'vprofile', classifier: '', file: 'target/vprofile-v2.war', type: 'war']], credentialsId: 'nexus-jenkins', groupId: 'QA', nexusUrl: '52.70.57.181:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'vpro-maven', version: 'v2'
-            }
-        }
     }
 }

@@ -39,15 +39,10 @@ pipeline{
         stage('Sonar Scanner'){
             steps{
                 withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=new \
+                    -Dsonar.projectkey=new -Dsonar.java.binaries=. '''
                 }
             }
-        
-        stage('OWASP Dependency Check') {
-            steps {
-               dependencyCheck additionalArguments: ' --scan ./ ', odcInstallation: 'DC'
-                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }}
+        }
     }
 }

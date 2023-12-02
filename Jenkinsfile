@@ -39,7 +39,7 @@ pipeline{
         stage('Sonar Scanner'){
             steps{
                 withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar'
                 }
             }
         }

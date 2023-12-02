@@ -42,6 +42,12 @@ pipeline{
                     sh 'mvn sonar:sonar'
                 }
             }
-        }
+        
+        stage('OWASP Dependency Check') {
+            steps {
+               dependencyCheck additionalArguments: ' --scan ./ ', odcInstallation: 'DC'
+                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }}
     }
 }

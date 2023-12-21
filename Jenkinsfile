@@ -39,12 +39,12 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'SonarQube') {
-                     sh 'sonar.projectKey=my.only.project
+                     sh '''sonar.projectKey=my.only.project
                          sonar.projectName=My Nice Project
                          sonar.projectVersion=main
                          sonar.sources=Vendor2/Project/src/
                          sonar.java.binaries=Vendor2/Project/src/
-                         sonar.java.source=1.8'
+                         sonar.java.source=1.8'''
                 }
             }
         }

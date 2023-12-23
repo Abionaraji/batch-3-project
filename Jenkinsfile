@@ -39,12 +39,7 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'SonarQube') {
-                     sh '''sonar.projectKey=new-project
-                         sonar.projectName=My Nice Project
-                         sonar.projectVersion=main
-                         sonar.sources=Vendor2/Project/src/
-                         sonar.java.binaries=Vendor2/Project/src/
-                         sonar.java.source=1.8'''
+                     sh 'mvn  -Dsonar.analysis.mode= -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dsonar.working.directory=/mypath/target/.sonar'
                 }
             }
         }

@@ -38,8 +38,8 @@ pipeline{
         }
         stage ('SONAR ANALYSIS') {
             steps {
-                 withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'SonarQube') {
-                     sh 'mvn  -Dsonar.analysis.mode= -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dsonar.working.directory=/mypath/target/.sonar'
+                 withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
+                     sh "/var/lib/jenkins/workspace/test/apache-maven-3.9.4/bin/mvn clean verify sonar:sonar -Ds
                 }
             }
         }

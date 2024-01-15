@@ -39,7 +39,7 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                     sh "/var/lib/jenkins/workspace/test/apache-maven-3.9.4/bin/mvn clean verify sonar:sonar -Ds
+                     sh "/var/lib/jenkins/workspace/test/apache-maven-3.9.4/bin/mvn clean verify sonar:sonar -Ds"
                 }
             }
         }

@@ -39,7 +39,10 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                     sh "/var/lib/jenkins/workspace/test/apache-maven-3.9.4/bin/mvn clean verify sonar:sonar -Ds"
+                     sh "mvn sonar:sonar \
+                      -Dsonar.projectKey=new-project \
+                      -Dsonar.host.url=http://44.203.190.217:9000 \
+                      -Dsonar.login=81ce30ddc4c1381603fd993266012cada846bf0e"
                 }
             }
         }

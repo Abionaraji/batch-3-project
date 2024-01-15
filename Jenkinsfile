@@ -39,10 +39,7 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                     sh "mvn sonar:sonar \
-                      -Dsonar.projectKey=new-project \
-                      -Dsonar.host.url=http://44.203.190.217:9000 \
-                      -Dsonar.login=81ce30ddc4c1381603fd993266012cada846bf0e"
+                    sh 'maven sonar:sonar -Dsonar.token=yourAuthenticationToken'
                 }
             }
         }

@@ -39,7 +39,7 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                    sh '/opt/sonarqube/lib/scanner'
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=new-project -Dsonar.projectName='new-project'"
                 }
             }
         }

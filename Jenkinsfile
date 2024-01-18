@@ -39,7 +39,7 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                    sh 'maven sonar:sonar -Dsonar.token=yourAuthenticationToken'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }

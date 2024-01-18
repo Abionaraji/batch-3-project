@@ -39,7 +39,8 @@ pipeline{
         stage ('SONAR ANALYSIS') {
             steps {
                  withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=new \
+                    -Dsonar.projectkey=new -Dsonar.java.binaries=. '''
                 }
             }
         }

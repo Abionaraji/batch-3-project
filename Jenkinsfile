@@ -36,12 +36,11 @@ pipeline{
                 sh 'mvn verify -DiskipUnitTests'
             }
         }
-        stage ('SONAR ANALYSIS') {
-            steps {
-                 withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+       stage('SonarQube Analysis') {
+           def mvn = tool 'Default Maven';
+               withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'SonarQube') {
+               sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=new-project -Dsonar.projectName='new-project'"
+          }
+       }
     }
 }
